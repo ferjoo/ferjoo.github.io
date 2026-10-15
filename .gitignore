@@ -1,0 +1,13 @@
+node_modules/
+dist/
+
+# Secrets and local config
+.env*
+!.env.example
+.aws/
+*.pem
+*.key
+.npmrc.local
+.netrc
+
+.DS_Store
