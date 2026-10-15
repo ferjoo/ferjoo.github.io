@@ -5,7 +5,7 @@ export function Stats({ t, lang }: { t: Content; lang: Lang }) {
   return (
     <dl className="grid grid-cols-2 gap-x-8 gap-y-12 border-y border-line py-16 md:grid-cols-4">
       {t.stats.map((s, i) => (
-        <Reveal key={s.label} delay={i * 0.06} className="flex flex-col-reverse text-center">
+        <Reveal key={s.label} delay={i * 0.06} className="flex flex-col-reverse justify-end text-center">
           <dt className="mx-auto mt-2 max-w-[14rem] text-sm leading-snug text-ink-2">{s.label}</dt>
           <dd className="text-5xl font-semibold tracking-tight text-ink">
             {s.value.toLocaleString(lang === 'es' ? 'es-GT' : 'en-US')}
