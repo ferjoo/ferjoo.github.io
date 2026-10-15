@@ -175,7 +175,7 @@ export const content: Record<Lang, Content> = {
           title: 'Airline Operations Database',
           kind: 'Database design · Oracle',
           description:
-            'A relational model for running an airline: airports and gates, fleet and maintenance, flights split into segments, crew qualifications and assignments, reservations, baggage claims and operational alerts. 29 tables, 36 foreign keys and 39 check constraints, with an interactive schema explorer.',
+            'A relational model for running an airline: airports and gates, fleet and maintenance, flights split into segments, crew qualifications and assignments, reservations, baggage claims and operational alerts. 29 entities, 31 relationships, 36 foreign keys and 39 check constraints, with an interactive schema explorer, the full Data Modeler diagrams and a design document that explains every decision.',
           stack: ['Oracle 23ai', 'SQL', 'ER modeling', 'Data Modeler'],
           ...projectLinks.database,
         },
@@ -339,7 +339,7 @@ export const content: Record<Lang, Content> = {
           title: 'Base de datos para operaciones aéreas',
           kind: 'Diseño de bases de datos · Oracle',
           description:
-            'Un modelo relacional para operar una aerolínea: aeropuertos y puertas, flota y mantenimiento, vuelos divididos en segmentos, calificaciones y asignación de tripulación, reservas, reclamos de equipaje y alertas operativas. 29 tablas, 36 llaves foráneas y 39 restricciones CHECK, con un explorador interactivo del esquema.',
+            'Un modelo relacional para operar una aerolínea: aeropuertos y puertas, flota y mantenimiento, vuelos divididos en segmentos, calificaciones y asignación de tripulación, reservas, reclamos de equipaje y alertas operativas. 29 entidades, 31 relaciones, 36 llaves foráneas y 39 restricciones CHECK, con un explorador interactivo del esquema, los diagramas completos de Data Modeler y un documento de diseño que justifica cada decisión.',
           stack: ['Oracle 23ai', 'SQL', 'Modelado E-R', 'Data Modeler'],
           ...projectLinks.database,
         },
