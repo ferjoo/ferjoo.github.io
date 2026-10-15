@@ -43,16 +43,42 @@ function BackroomsArt() {
   )
 }
 
+function DatabaseArt() {
+  const boxes = [
+    { x: 40, y: 40, w: 96, h: 56 },
+    { x: 172, y: 24, w: 96, h: 72, accent: true },
+    { x: 304, y: 40, w: 96, h: 56 },
+    { x: 104, y: 140, w: 96, h: 56 },
+    { x: 240, y: 140, w: 96, h: 56 },
+  ]
+  return (
+    <svg viewBox="0 0 440 230" className="h-full w-full text-ink-3" aria-hidden="true">
+      <g fill="none" stroke="currentColor" strokeWidth="1.2">
+        <path d="M136 68h36M268 60h36M152 140v-28h68v-16M288 140v-28h-68" />
+      </g>
+      {boxes.map((b, i) => (
+        <g key={i}>
+          <rect x={b.x} y={b.y} width={b.w} height={b.h} rx="10" className={b.accent ? 'fill-accent' : 'fill-fill-2'} />
+          {[0, 1, 2].map((r) => (
+            <rect key={r} x={b.x + 12} y={b.y + 14 + r * 12} width={b.w - (r ? 40 : 24)} height="4" rx="2" className={b.accent ? 'fill-white/70' : 'fill-canvas'} />
+          ))}
+        </g>
+      ))}
+    </svg>
+  )
+}
+
 const art: Record<ProjectId, () => ReactNode> = {
   dashboard: DashboardArt,
+  database: DatabaseArt,
   pokemon: LexerArt,
   backrooms: BackroomsArt,
 }
 
-function ProjectTile({ project, t, wide }: { project: Project; t: Content; wide: boolean }) {
+function ProjectTile({ project, t, wide, flip }: { project: Project; t: Content; wide: boolean; flip: boolean }) {
   const Art = art[project.id]
   return (
-    <article className={`flex h-full flex-col overflow-hidden rounded-[28px] bg-fill ${wide ? 'md:flex-row-reverse' : ''}`}>
+    <article className={`flex h-full flex-col overflow-hidden rounded-[28px] bg-fill ${wide ? (flip ? 'md:flex-row' : 'md:flex-row-reverse') : ''}`}>
       <div className={`h-56 shrink-0 ${wide ? 'md:h-auto md:w-1/2' : ''}`}>
         <Art />
       </div>
@@ -82,8 +108,8 @@ export function Projects({ t }: { t: Content }) {
       </Reveal>
       <div className="grid gap-5 md:grid-cols-2">
         {t.projects.items.map((project, i) => (
-          <Reveal key={project.id} delay={i * 0.06} className={i === 0 ? 'md:col-span-2' : ''}>
-            <ProjectTile project={project} t={t} wide={i === 0} />
+          <Reveal key={project.id} delay={i * 0.06} className={i < 2 ? 'md:col-span-2' : ''}>
+            <ProjectTile project={project} t={t} wide={i < 2} flip={i === 1} />
           </Reveal>
         ))}
       </div>

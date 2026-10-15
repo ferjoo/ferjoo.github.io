@@ -1,7 +1,7 @@
 // All site copy lives here, in both languages, so updating the portfolio never means touching components.
 
 export type Lang = 'en' | 'es'
-export type ProjectId = 'dashboard' | 'pokemon' | 'backrooms'
+export type ProjectId = 'dashboard' | 'database' | 'pokemon' | 'backrooms'
 
 export interface Job {
   role: string
@@ -86,6 +86,7 @@ export const TIME_ZONE = 'America/Guatemala'
 
 const projectLinks = {
   dashboard: { demo: 'https://ferjoo.github.io/financial-dashboard/', code: 'https://github.com/ferjoo/financial-dashboard' },
+  database: { demo: 'https://ferjoo.github.io/airline-database/', code: 'https://github.com/ferjoo/airline-database' },
   pokemon: { demo: 'https://ferjoo.github.io/LFP_practica1/', code: 'https://github.com/ferjoo/LFP_practica1' },
   backrooms: { demo: 'https://ferjoo.github.io/backrooms/', code: 'https://github.com/ferjoo/backrooms' },
 }
@@ -170,9 +171,18 @@ export const content: Record<Lang, Content> = {
           ...projectLinks.dashboard,
         },
         {
+          id: 'database',
+          title: 'Airline Operations Database',
+          kind: 'Database design · Oracle',
+          description:
+            'A relational model for running an airline: airports and gates, fleet and maintenance, flights split into segments, crew qualifications and assignments, reservations, baggage claims and operational alerts. 29 tables, 36 foreign keys and 39 check constraints, with an interactive schema explorer.',
+          stack: ['Oracle 23ai', 'SQL', 'ER modeling', 'Data Modeler'],
+          ...projectLinks.database,
+        },
+        {
           id: 'pokemon',
           title: 'Pokémon Team Lexer',
-          kind: 'Compiler theory · USAC',
+          kind: 'Compiler theory',
           description:
             'A lexer for a custom language that describes Pokémon teams. It tokenizes the input, reports lexical errors with their exact position and renders each team with its stats.',
           stack: ['React 19', 'TypeScript', 'Vite', 'Lexical analysis'],
@@ -325,9 +335,18 @@ export const content: Record<Lang, Content> = {
           ...projectLinks.dashboard,
         },
         {
+          id: 'database',
+          title: 'Base de datos para operaciones aéreas',
+          kind: 'Diseño de bases de datos · Oracle',
+          description:
+            'Un modelo relacional para operar una aerolínea: aeropuertos y puertas, flota y mantenimiento, vuelos divididos en segmentos, calificaciones y asignación de tripulación, reservas, reclamos de equipaje y alertas operativas. 29 tablas, 36 llaves foráneas y 39 restricciones CHECK, con un explorador interactivo del esquema.',
+          stack: ['Oracle 23ai', 'SQL', 'Modelado E-R', 'Data Modeler'],
+          ...projectLinks.database,
+        },
+        {
           id: 'pokemon',
           title: 'Pokémon Team Lexer',
-          kind: 'Teoría de compiladores · USAC',
+          kind: 'Teoría de compiladores',
           description:
             'Un analizador léxico para un lenguaje propio que describe equipos Pokémon. Tokeniza la entrada, reporta errores léxicos con su posición exacta y muestra cada equipo con sus estadísticas.',
           stack: ['React 19', 'TypeScript', 'Vite', 'Análisis léxico'],
