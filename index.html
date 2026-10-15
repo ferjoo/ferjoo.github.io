@@ -5,8 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Fernando Morales Ralda — Senior Frontend Engineer building real-time, multichannel SaaS interfaces with React, TypeScript and Flutter." />
     <meta name="color-scheme" content="light dark" />
+    <meta property="og:title" content="Fernando Morales Ralda — Senior Frontend Engineer" />
+    <meta property="og:description" content="Real-time SaaS interfaces, design systems and fullstack features with React, TypeScript and Flutter." />
+    <meta property="og:url" content="https://ferjoo.github.io/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>Fernando Morales Ralda — Senior Frontend Engineer</title>
+    <script>
+      // Apply the saved or system theme before first paint so the page never flashes.
+      try {
+        var saved = localStorage.getItem('portfolio-theme')
+        var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches
+        document.documentElement.classList.toggle('dark', dark)
+      } catch (e) {
+        document.documentElement.classList.add('dark')
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

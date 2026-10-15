@@ -1,28 +1,111 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --color-accent: #0f766e;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Space Grotesk Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-accent: #0d9488;
+  --color-accent-2: #7c3aed;
   --color-accent-soft: #ccfbf1;
+
+  --animate-aurora: aurora 22s ease-in-out infinite alternate;
+  --animate-marquee: marquee 45s linear infinite;
+  --animate-marquee-reverse: marquee 45s linear infinite reverse;
+  --animate-shimmer: shimmer 6s linear infinite;
+  --animate-blink: blink 1s steps(1) infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-accent: #2dd4bf;
-    --color-accent-soft: #134e4a;
-  }
+.dark {
+  --color-accent: #2dd4bf;
+  --color-accent-2: #a78bfa;
+  --color-accent-soft: #134e4a;
+}
+
+@keyframes aurora {
+  0% { transform: translate3d(-10%, -6%, 0) rotate(0deg) scale(1); }
+  50% { transform: translate3d(8%, 4%, 0) rotate(20deg) scale(1.15); }
+  100% { transform: translate3d(-4%, 10%, 0) rotate(-10deg) scale(1.05); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes shimmer {
+  from { background-position: 0% 50%; }
+  to { background-position: 200% 50%; }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
 }
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-zinc-50 font-sans text-zinc-800 antialiased dark:bg-zinc-950 dark:text-zinc-200;
+  overflow-x: clip;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--color-accent) 35%, transparent);
+}
+
+/* Gradient text that slowly drifts; used for the role line and contact headline. */
+.text-gradient {
+  background-image: linear-gradient(90deg, var(--color-accent), var(--color-accent-2), var(--color-accent));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Fine film grain over the aurora so gradients do not band. */
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* Cards light up under the pointer; --mx/--my are set from pointer events. */
+.spotlight-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), color-mix(in oklab, var(--color-accent) 18%, transparent), transparent 60%);
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-}
 
-body {
-  @apply bg-white text-zinc-800 antialiased dark:bg-zinc-950 dark:text-zinc-200;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
