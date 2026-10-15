@@ -43,6 +43,7 @@ export interface Content {
     items: { degree: string; school: string; period: string }[]
     certsTitle: string
     certs: { issuer: string; year: string; names: string[] }
+    certsLink: string
   }
   contact: {
     title: string
@@ -60,6 +61,7 @@ export interface Content {
     or: string
     localTime: string
     github: string
+    linkedin: string
     greeting: string
   }
   palette: {
@@ -72,6 +74,7 @@ export interface Content {
     toggleTheme: string
     copyEmail: string
     openGithub: string
+    openLinkedin: string
     hint: string
   }
   theme: { light: string; dark: string }
@@ -82,6 +85,8 @@ export interface Content {
 
 export const EMAIL = 'ferjomor@gmail.com'
 export const GITHUB = 'https://github.com/ferjoo'
+export const LINKEDIN = 'https://www.linkedin.com/in/ferjoo-200102007/'
+export const LINKEDIN_CERTS = 'https://www.linkedin.com/in/ferjoo-200102007/details/certifications/'
 export const TIME_ZONE = 'America/Guatemala'
 
 const projectLinks = {
@@ -218,6 +223,7 @@ export const content: Record<Lang, Content> = {
         year: '2026',
         names: ['Claude Code in Action', 'Claude Code 101', 'Teaching the AI Fluency Framework', 'AI Fluency for Nonprofits'],
       },
+      certsLink: 'View on LinkedIn',
     },
     contact: {
       title: 'Contact',
@@ -239,6 +245,7 @@ export const content: Record<Lang, Content> = {
       or: 'or',
       localTime: 'My local time',
       github: 'GitHub',
+      linkedin: 'LinkedIn',
       greeting: 'Hi Fernando,',
     },
     palette: {
@@ -251,6 +258,7 @@ export const content: Record<Lang, Content> = {
       toggleTheme: 'Toggle light / dark',
       copyEmail: 'Copy email address',
       openGithub: 'Open GitHub profile',
+      openLinkedin: 'Open LinkedIn profile',
       hint: '↑↓ to move · Enter to run · Esc to close',
     },
     theme: { light: 'Switch to light theme', dark: 'Switch to dark theme' },
@@ -382,6 +390,7 @@ export const content: Record<Lang, Content> = {
         year: '2026',
         names: ['Claude Code in Action', 'Claude Code 101', 'Teaching the AI Fluency Framework', 'AI Fluency for Nonprofits'],
       },
+      certsLink: 'Ver en LinkedIn',
     },
     contact: {
       title: 'Contacto',
@@ -403,6 +412,7 @@ export const content: Record<Lang, Content> = {
       or: 'o',
       localTime: 'Mi hora local',
       github: 'GitHub',
+      linkedin: 'LinkedIn',
       greeting: 'Hola Fernando,',
     },
     palette: {
@@ -415,6 +425,7 @@ export const content: Record<Lang, Content> = {
       toggleTheme: 'Cambiar tema claro / oscuro',
       copyEmail: 'Copiar dirección de email',
       openGithub: 'Abrir perfil de GitHub',
+      openLinkedin: 'Abrir perfil de LinkedIn',
       hint: '↑↓ para moverte · Enter para ejecutar · Esc para cerrar',
     },
     theme: { light: 'Cambiar a tema claro', dark: 'Cambiar a tema oscuro' },

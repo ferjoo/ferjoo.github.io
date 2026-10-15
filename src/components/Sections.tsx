@@ -1,5 +1,5 @@
-import type { Content, Lang } from '../content'
-import { Reveal, Section } from './ui'
+import { LINKEDIN_CERTS, type Content, type Lang } from '../content'
+import { ChevronLink, Reveal, Section } from './ui'
 
 export function Stats({ t, lang }: { t: Content; lang: Lang }) {
   return (
@@ -97,6 +97,11 @@ export function Skills({ t }: { t: Content }) {
               <li key={name}>{name}</li>
             ))}
           </ul>
+          <p className="mt-4 text-[17px]">
+            <ChevronLink href={LINKEDIN_CERTS} external>
+              {t.education.certsLink}
+            </ChevronLink>
+          </p>
         </Reveal>
       </div>
     </Section>

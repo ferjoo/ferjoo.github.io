@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
-import { GITHUB, type Content } from '../content'
+import { GITHUB, LINKEDIN, type Content } from '../content'
 import { SECTION_IDS } from './Header'
 import { Icon } from './ui'
 
@@ -42,6 +42,7 @@ export function CommandPalette({ open, onClose, t, onToggleLang, onToggleTheme, 
       { id: 'theme', group: t.palette.actions, label: t.palette.toggleTheme, icon: 'moon', run: onToggleTheme },
       { id: 'copy', group: t.palette.actions, label: t.palette.copyEmail, icon: 'copy', run: onCopyEmail },
       { id: 'github', group: t.palette.actions, label: t.palette.openGithub, icon: 'github', run: () => window.open(GITHUB, '_blank', 'noopener') },
+      { id: 'linkedin', group: t.palette.actions, label: t.palette.openLinkedin, icon: 'globe', run: () => window.open(LINKEDIN, '_blank', 'noopener') },
     ]
   }, [t, onToggleLang, onToggleTheme, onCopyEmail])
 

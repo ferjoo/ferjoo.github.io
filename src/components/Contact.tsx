@@ -1,6 +1,6 @@
 import { useId, useState, type FormEvent } from 'react'
 import { motion } from 'motion/react'
-import { EMAIL, GITHUB, TIME_ZONE, type Content, type Lang } from '../content'
+import { EMAIL, GITHUB, LINKEDIN, TIME_ZONE, type Content, type Lang } from '../content'
 import { useCopy, useLocalTime } from '../hooks'
 import { ChevronLink, Icon, Reveal, Section } from './ui'
 
@@ -47,9 +47,14 @@ export function Contact({ t, lang }: { t: Content; lang: Lang }) {
             <p className="text-ink-2">
               {c.localTime}: <span className="text-ink">{time}</span> · GMT-6
             </p>
-            <ChevronLink href={GITHUB} external>
-              github.com/ferjoo
-            </ChevronLink>
+            <div className="flex flex-wrap gap-x-8 gap-y-2">
+              <ChevronLink href={GITHUB} external>
+                {c.github}
+              </ChevronLink>
+              <ChevronLink href={LINKEDIN} external>
+                {c.linkedin}
+              </ChevronLink>
+            </div>
           </div>
         </Reveal>
 
