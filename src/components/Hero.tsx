@@ -1,159 +1,105 @@
-import { Fragment, lazy, Suspense, useEffect, useState } from 'react'
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
+import { lazy, Suspense, useState } from 'react'
+import { motion, useReducedMotion } from 'motion/react'
 import { TIME_ZONE, type Content, type Lang } from '../content'
 import { canUseWebGL, useLocalTime } from '../hooks'
-import { Chip, Icon, Kbd, Magnetic } from './ui'
+import { ChevronLink } from './ui'
 
 // three.js only downloads when the 3D card is actually shown.
 const ProfileCard3D = lazy(() => import('./ProfileCard3D'))
 
-const NAME = ['Fernando', 'Morales', 'Ralda']
+const ease = [0.28, 0.11, 0.32, 1] as const
 
-function RotatingText({ words }: { words: string[] }) {
-  const [index, setIndex] = useState(0)
-  const reduced = useReducedMotion()
-
-  useEffect(() => {
-    if (reduced) return
-    const id = window.setInterval(() => setIndex((i) => (i + 1) % words.length), 2400)
-    return () => window.clearInterval(id)
-  }, [reduced, words.length])
-
+function StaticCard({ t }: { t: Content }) {
   return (
-    <span className="relative inline-flex h-[1.3em] overflow-hidden align-bottom">
-      <AnimatePresence mode="popLayout" initial={false}>
-        <motion.span
-          key={words[index]}
-          initial={{ y: '100%', opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: '-100%', opacity: 0 }}
-          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className="text-gradient animate-shimmer whitespace-nowrap font-semibold"
-        >
-          {words[index]}
-        </motion.span>
-      </AnimatePresence>
-    </span>
-  )
-}
-
-function ProfileCardFallback({ t }: { t: Content }) {
-  return (
-    <div className="spotlight-card mx-auto w-full max-w-sm rounded-3xl border border-zinc-200 bg-white/70 p-6 shadow-2xl shadow-accent/10 backdrop-blur dark:border-zinc-800 dark:bg-zinc-900/70">
-      <p className="font-mono text-xs uppercase tracking-widest text-accent">{t.card.front}</p>
-      <p className="mt-3 font-display text-2xl font-bold text-zinc-900 dark:text-white">Fernando Morales</p>
-      <p className="text-zinc-500">{t.hero.role}</p>
-      <div className="mt-5 flex flex-wrap gap-2">
-        {t.card.stack.map((s) => (
-          <Chip key={s}>{s}</Chip>
-        ))}
+    <div className="mx-auto flex aspect-[1.6] w-full max-w-sm flex-col justify-between rounded-[22px] bg-gradient-to-br from-[#fafafa] to-[#e6e6e9] p-6 shadow-[0_30px_60px_-20px_rgb(0_0_0/0.35)] dark:from-[#2a2a2c] dark:to-[#141415]">
+      <span className="text-sm font-semibold tracking-tight text-ink-2">FM</span>
+      <div>
+        <p className="text-lg font-semibold tracking-tight text-ink">Fernando Morales Ralda</p>
+        <p className="text-sm text-ink-2">{t.hero.role}</p>
       </div>
     </div>
   )
 }
 
-export function Hero({ t, lang, dark, onOpenPalette }: { t: Content; lang: Lang; dark: boolean; onOpenPalette: () => void }) {
+export function Hero({ t, lang, dark }: { t: Content; lang: Lang; dark: boolean }) {
   const time = useLocalTime(TIME_ZONE, lang)
   const reduced = useReducedMotion()
   const [webgl] = useState(canUseWebGL)
   const show3D = webgl && !reduced
-  const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform)
 
   return (
-    <section id="top" className="grid min-h-[calc(100svh-4rem)] items-center gap-12 py-16 lg:grid-cols-[1.15fr_1fr]">
-      <div>
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex flex-wrap items-center gap-3 rounded-full border border-zinc-300/80 bg-white/60 px-4 py-1.5 text-sm backdrop-blur dark:border-zinc-700/80 dark:bg-zinc-900/60"
-        >
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
-          </span>
-          <span className="text-zinc-700 dark:text-zinc-300">{t.hero.available}</span>
-          <span className="flex items-center gap-1 font-mono text-xs text-zinc-500">
-            <Icon name="clock" className="h-3.5 w-3.5" />
-            {time} {t.hero.localTime}
-          </span>
-        </motion.p>
+    <section id="top" className="flex min-h-[calc(100svh-3rem)] flex-col items-center justify-center pb-12 pt-20 text-center">
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, ease }}
+        className="flex items-center gap-2 text-sm text-ink-2"
+      >
+        <span className="h-2 w-2 rounded-full bg-[#30d158]" aria-hidden="true" />
+        {t.hero.available} · {time} {t.hero.localTime}
+      </motion.p>
 
-        <h1 className="mt-8 font-display text-5xl font-bold leading-[1.02] tracking-tight text-zinc-900 sm:text-7xl dark:text-white">
-          {NAME.map((word, i) => (
-            <Fragment key={word}>
-            {i > 0 && ' '}
-            <span className="inline-block overflow-hidden pb-1 align-bottom">
-              <motion.span
-                className="inline-block"
-                initial={{ y: '110%' }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.8, delay: 0.1 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-              >
-                {word}
-              </motion.span>
-            </span>
-            </Fragment>
-          ))}
-        </h1>
+      <motion.h1
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.1, delay: 0.1, ease }}
+        className="mt-5 max-w-4xl text-5xl font-semibold leading-[1.05] tracking-[-0.03em] text-ink sm:text-7xl md:text-8xl"
+      >
+        Fernando Morales Ralda.
+      </motion.h1>
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5 }}
-          className="mt-6 space-y-4"
-        >
-          <p className="text-gradient animate-shimmer font-display text-2xl font-semibold sm:text-3xl">{t.hero.role}</p>
-          <p className="text-xl text-zinc-700 sm:text-2xl dark:text-zinc-300">
-            {t.hero.buildPrefix} <RotatingText words={t.hero.rotating} />
-          </p>
-          <p className="max-w-xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">{t.hero.tagline}</p>
-        </motion.div>
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.1, delay: 0.25, ease }}
+        className="mt-5 text-2xl font-semibold tracking-tight text-ink-2 sm:text-3xl"
+      >
+        {t.hero.role}
+      </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.7 }}
-          className="mt-10 flex flex-wrap items-center gap-4"
-        >
-          <Magnetic>
-            <a
-              href="#contact"
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-zinc-900 px-6 py-3 font-semibold text-white shadow-lg shadow-accent/20 dark:bg-white dark:text-zinc-900"
-            >
-              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-accent to-accent-2 transition-transform duration-500 group-hover:translate-x-0" />
-              <span className="relative">{t.hero.ctaContact}</span>
-              <Icon name="arrow" className="relative h-4 w-4 transition-transform group-hover:rotate-45" />
-            </a>
-          </Magnetic>
-          <Magnetic>
-            <a
-              href="#projects"
-              className="inline-flex items-center gap-2 rounded-full border border-zinc-300 bg-white/50 px-6 py-3 font-semibold backdrop-blur transition-colors hover:border-accent hover:text-accent dark:border-zinc-700 dark:bg-zinc-900/50"
-            >
-              {t.hero.ctaProjects}
-            </a>
-          </Magnetic>
-          <button type="button" onClick={onOpenPalette} className="hidden items-center gap-2 text-sm text-zinc-500 hover:text-accent sm:flex">
-            {t.hero.paletteHint} <Kbd>{isMac ? '⌘' : 'Ctrl'}</Kbd>
-            <Kbd>K</Kbd>
-          </button>
-        </motion.div>
-      </div>
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.1, delay: 0.35, ease }}
+        className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-2 sm:text-xl"
+      >
+        {t.hero.tagline}
+      </motion.p>
 
       <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        className="relative h-[380px] sm:h-[440px]"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.1, delay: 0.45, ease }}
+        className="mt-9 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-lg"
+      >
+        <a
+          href="#contact"
+          className="inline-flex min-h-11 items-center rounded-full bg-accent px-6 text-base font-normal text-white transition-colors hover:bg-accent-hover"
+        >
+          {t.hero.ctaContact}
+        </a>
+        <ChevronLink href="#projects">{t.hero.ctaProjects}</ChevronLink>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.4, delay: 0.55, ease }}
+        className="mt-14 h-[340px] w-full max-w-3xl sm:h-[420px]"
       >
         {show3D ? (
-          <Suspense fallback={<div className="grid h-full place-items-center"><ProfileCardFallback t={t} /></div>}>
+          <Suspense
+            fallback={
+              <div className="grid h-full place-items-center">
+                <StaticCard t={t} />
+              </div>
+            }
+          >
             <ProfileCard3D t={t} dark={dark} />
           </Suspense>
         ) : (
           <div className="grid h-full place-items-center">
-            <ProfileCardFallback t={t} />
+            <StaticCard t={t} />
           </div>
         )}
       </motion.div>

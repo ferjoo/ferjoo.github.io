@@ -94,7 +94,7 @@ export function CommandPalette({ open, onClose, t, onToggleLang, onToggleTheme, 
     <AnimatePresence>
       {open && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-start justify-center bg-zinc-950/40 px-4 pt-[15vh] backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-start justify-center bg-black/20 px-4 pt-[18vh] dark:bg-black/40"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -109,10 +109,10 @@ export function CommandPalette({ open, onClose, t, onToggleLang, onToggleTheme, 
             exit={{ opacity: 0, scale: 0.96, y: -10 }}
             transition={{ type: 'spring', stiffness: 420, damping: 32 }}
             onKeyDown={onKeyDown}
-            className="w-full max-w-lg overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-2xl dark:border-zinc-800 dark:bg-zinc-900"
+            className="w-full max-w-xl overflow-hidden rounded-2xl border border-line bg-canvas/80 shadow-[0_24px_80px_rgb(0_0_0/0.25)] backdrop-blur-2xl backdrop-saturate-[1.8] dark:bg-fill/80"
           >
-            <div className="flex items-center gap-3 border-b border-zinc-200 px-4 dark:border-zinc-800">
-              <Icon name="search" className="h-4 w-4 text-zinc-400" />
+            <div className="flex items-center gap-3 border-b border-line px-5">
+              <Icon name="search" className="h-5 w-5 text-ink-3" />
               <input
                 ref={inputRef}
                 value={query}
@@ -122,37 +122,37 @@ export function CommandPalette({ open, onClose, t, onToggleLang, onToggleTheme, 
                 aria-expanded="true"
                 aria-controls="palette-list"
                 aria-activedescendant={filtered[index] ? `cmd-${filtered[index].id}` : undefined}
-                className="h-14 flex-1 bg-transparent outline-none placeholder:text-zinc-400"
+                className="h-16 flex-1 bg-transparent text-xl text-ink outline-none placeholder:text-ink-3 focus-visible:outline-none"
               />
             </div>
             <ul id="palette-list" role="listbox" className="max-h-80 overflow-y-auto p-2">
-              {filtered.length === 0 && <li className="px-3 py-8 text-center text-sm text-zinc-500">{t.palette.empty}</li>}
+              {filtered.length === 0 && <li className="px-3 py-8 text-center text-sm text-ink-3">{t.palette.empty}</li>}
               {filtered.map((command, i) => {
                 const header = command.group !== lastGroup ? command.group : null
                 lastGroup = command.group
                 const selected = i === index
                 return (
                   <li key={command.id} role="presentation">
-                    {header && <p className="px-3 pb-1 pt-3 font-mono text-[11px] uppercase tracking-widest text-zinc-400">{header}</p>}
+                    {header && <p className="px-3 pb-1 pt-3 text-xs font-semibold text-ink-3">{header}</p>}
                     <div
                       id={`cmd-${command.id}`}
                       role="option"
                       aria-selected={selected}
                       onMouseMove={() => setIndex(i)}
                       onClick={() => run(command)}
-                      className={`relative flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 text-sm ${selected ? 'text-zinc-900 dark:text-white' : 'text-zinc-600 dark:text-zinc-400'}`}
+                      className={`relative flex min-h-11 cursor-pointer items-center gap-3 rounded-lg px-3 text-[15px] ${selected ? 'text-white' : 'text-ink'}`}
                     >
                       {selected && (
-                        <motion.span layoutId="palette-highlight" className="absolute inset-0 rounded-lg bg-zinc-100 dark:bg-zinc-800" transition={{ type: 'spring', stiffness: 500, damping: 35 }} />
+                        <motion.span layoutId="palette-highlight" className="absolute inset-0 rounded-lg bg-accent" transition={{ type: 'spring', stiffness: 600, damping: 40 }} />
                       )}
-                      <Icon name={command.icon} className="relative h-4 w-4 text-accent" />
+                      <Icon name={command.icon} className={`relative h-4 w-4 ${selected ? 'text-white' : 'text-ink-3'}`} />
                       <span className="relative">{command.label}</span>
                     </div>
                   </li>
                 )
               })}
             </ul>
-            <p className="border-t border-zinc-200 px-4 py-2.5 font-mono text-[11px] text-zinc-400 dark:border-zinc-800">{t.palette.hint}</p>
+            <p className="border-t border-line px-5 py-2.5 text-xs text-ink-3">{t.palette.hint}</p>
           </motion.div>
         </motion.div>
       )}

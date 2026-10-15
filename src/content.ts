@@ -1,7 +1,7 @@
 // All site copy lives here, in both languages, so updating the portfolio never means touching components.
 
 export type Lang = 'en' | 'es'
-export type ProjectId = 'chapinwin' | 'pokemon' | 'backrooms'
+export type ProjectId = 'dashboard' | 'pokemon' | 'backrooms'
 
 export interface Job {
   role: string
@@ -28,8 +28,6 @@ export interface Content {
     available: string
     localTime: string
     role: string
-    buildPrefix: string
-    rotating: string[]
     tagline: string
     ctaContact: string
     ctaProjects: string
@@ -88,7 +86,7 @@ export const GITHUB = 'https://github.com/ferjoo'
 export const TIME_ZONE = 'America/Guatemala'
 
 const projectLinks = {
-  chapinwin: { demo: 'https://ferjoo.github.io/chapinwin-reporting-demo/', code: 'https://github.com/ferjoo/chapinwin-reporting-demo' },
+  dashboard: { demo: 'https://ferjoo.github.io/financial-dashboard/', code: 'https://github.com/ferjoo/financial-dashboard' },
   pokemon: { demo: 'https://ferjoo.github.io/LFP_practica1/', code: 'https://github.com/ferjoo/LFP_practica1' },
   backrooms: { demo: 'https://ferjoo.github.io/backrooms/', code: 'https://github.com/ferjoo/backrooms' },
 }
@@ -103,8 +101,6 @@ export const content: Record<Lang, Content> = {
       available: 'Available for new roles',
       localTime: 'in Guatemala',
       role: 'Senior Frontend Engineer',
-      buildPrefix: 'I build',
-      rotating: ['real-time inboxes', 'design systems', 'white-label themes', 'Flutter apps', 'fullstack features'],
       tagline:
         'Seven years shipping SaaS interfaces with React, TypeScript and Flutter, and lately the NestJS and Java services behind them.',
       ctaContact: 'Let’s talk',
@@ -167,13 +163,13 @@ export const content: Record<Lang, Content> = {
       code: 'Code',
       items: [
         {
-          id: 'chapinwin',
-          title: 'ChapinWin Reporting',
+          id: 'dashboard',
+          title: 'Financial Dashboard',
           kind: 'Fintech dashboard · demo with sample data',
           description:
-            'The reporting platform I led as Interim CTO: cashier and bet-shop metrics, affiliate performance, period comparisons, activity heatmaps and 5-role access control. This demo runs entirely in the browser with invented data.',
+            'The reporting platform I led as Interim CTO: branch and agent performance, partner metrics, period comparisons, activity heatmaps and 5-role access control. This demo runs entirely in the browser with invented data.',
           stack: ['React 19', 'TypeScript', 'React Query', 'Recharts', 'Tailwind 4'],
-          ...projectLinks.chapinwin,
+          ...projectLinks.dashboard,
         },
         {
           id: 'pokemon',
@@ -261,8 +257,6 @@ export const content: Record<Lang, Content> = {
       available: 'Disponible para nuevos roles',
       localTime: 'en Guatemala',
       role: 'Ingeniero Frontend Senior',
-      buildPrefix: 'Construyo',
-      rotating: ['bandejas en tiempo real', 'sistemas de diseño', 'temas white-label', 'apps en Flutter', 'funcionalidades fullstack'],
       tagline:
         'Siete años entregando interfaces SaaS con React, TypeScript y Flutter, y últimamente también los servicios en NestJS y Java que las sostienen.',
       ctaContact: 'Hablemos',
@@ -325,13 +319,13 @@ export const content: Record<Lang, Content> = {
       code: 'Código',
       items: [
         {
-          id: 'chapinwin',
-          title: 'ChapinWin Reporting',
+          id: 'dashboard',
+          title: 'Financial Dashboard',
           kind: 'Dashboard fintech · demo con datos de ejemplo',
           description:
-            'La plataforma de reportes que lideré como CTO Interino: métricas por cajero y casa de apuestas, rendimiento de afiliados, comparativas entre periodos, mapas de calor de actividad y control de acceso de 5 roles. Este demo corre completo en el navegador con datos inventados.',
+            'La plataforma de reportes que lideré como CTO Interino: rendimiento por sucursal y por agente, métricas de socios, comparativas entre periodos, mapas de calor de actividad y control de acceso de 5 roles. Este demo corre completo en el navegador con datos inventados.',
           stack: ['React 19', 'TypeScript', 'React Query', 'Recharts', 'Tailwind 4'],
-          ...projectLinks.chapinwin,
+          ...projectLinks.dashboard,
         },
         {
           id: 'pokemon',
