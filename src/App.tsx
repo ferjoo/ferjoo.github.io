@@ -42,7 +42,7 @@ export default function App() {
       <Header t={t} dark={dark} onToggleTheme={toggleTheme} onToggleLang={toggleLang} onOpenPalette={() => setPaletteOpen(true)} />
 
       <main id="main" className="mx-auto max-w-5xl px-5">
-        <Hero t={t} lang={lang} dark={dark} />
+        <Hero t={t} dark={dark} />
         <Stats t={t} lang={lang} />
         <About t={t} />
         <Experience t={t} />

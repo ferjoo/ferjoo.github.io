@@ -25,8 +25,7 @@ export interface Content {
   meta: { title: string }
   nav: { about: string; experience: string; projects: string; skills: string; contact: string }
   hero: {
-    available: string
-    localTime: string
+    location: string
     role: string
     tagline: string
     ctaContact: string
@@ -91,34 +90,33 @@ const projectLinks = {
   backrooms: { demo: 'https://ferjoo.github.io/backrooms/', code: 'https://github.com/ferjoo/backrooms' },
 }
 
-const frontendStack = ['React 19', 'TypeScript', 'Flutter', 'Design Systems', 'Storybook', 'Socket.IO', 'Tailwind', 'Playwright']
+const profileStack = ['React', 'TypeScript', 'Node.js', 'NestJS', 'Java', 'Flutter', 'MongoDB', 'AWS']
 
 export const content: Record<Lang, Content> = {
   en: {
-    meta: { title: 'Fernando Morales Ralda — Senior Frontend Engineer' },
+    meta: { title: 'Fernando Morales Ralda — Software Developer' },
     nav: { about: 'About', experience: 'Experience', projects: 'Projects', skills: 'Skills', contact: 'Contact' },
     hero: {
-      available: 'Available for new roles',
-      localTime: 'in Guatemala',
-      role: 'Senior Frontend Engineer',
+      location: 'Guatemala City',
+      role: 'Software Developer',
       tagline:
-        'Seven years shipping SaaS interfaces with React, TypeScript and Flutter, and lately the NestJS and Java services behind them.',
+        'Seven years building SaaS products end to end: web and mobile interfaces with React and Flutter, and the services behind them with Node.js, NestJS and Java on AWS.',
       ctaContact: 'Let’s talk',
       ctaProjects: 'See projects',
       paletteHint: 'or press',
     },
-    card: { front: 'Frontend profile', back: 'Daily stack', flip: 'Drag to rotate · click to flip', stackTitle: 'Stack', stack: frontendStack },
+    card: { front: 'Profile', back: 'Daily stack', flip: 'Drag to rotate · click to flip', stackTitle: 'Stack', stack: profileStack },
     stats: [
       { value: 7, suffix: '+', label: 'years shipping SaaS products' },
       { value: 1400, suffix: '+', label: 'commits as top contributor to the core product' },
-      { value: 180, suffix: '+', label: 'components in the design system I maintain' },
+      { value: 5, suffix: '+', label: 'businesses running ERPs I built' },
       { value: 15, suffix: '+', label: 'services in a billing platform I designed' },
     ],
     about: {
       title: 'About',
       paragraphs: [
-        'Frontend is where I have spent most of my career. At Ubiquo Labs I was the top contributor to an omnichannel messaging platform: a real-time inbox over Socket.IO, message rendering for WhatsApp, Instagram, Messenger, TikTok and RCS, and a shared component library with white-label themes for telecom carriers.',
-        'Over the last year I moved toward fullstack work, owning features end to end, from the React UI to NestJS and Java services. I also served as Interim CTO at Novago, leading a team of 3 on a financial reporting platform for an iGaming business.',
+        'I build software across the whole stack. At Ubiquo Labs I spent seven years on an omnichannel messaging platform: the React app and its component library, a Flutter mobile app, and a WhatsApp Business billing platform that spans 15+ services in Java, NestJS and AWS Lambda.',
+        'I also served as Interim CTO at Novago, leading a team of 3 on a financial reporting platform, and as a freelancer I build and maintain ERP systems for hotels and restaurants.',
       ],
     },
     experience: {
@@ -193,9 +191,9 @@ export const content: Record<Lang, Content> = {
     skills: {
       title: 'Skills',
       groups: [
-        { name: 'Frontend', items: ['React (16–19)', 'TypeScript', 'JavaScript', 'Next.js', 'Redux', 'React Query', 'Tailwind', 'Storybook', 'Design Systems', 'Three.js', 'Motion'] },
-        { name: 'Mobile & Backend', items: ['Flutter', 'Dart', 'BLoC', 'Node.js', 'NestJS', 'Java', 'Spring Boot', 'Laravel', 'MongoDB', 'Redis', 'Socket.IO'] },
-        { name: 'Cloud, testing & AI', items: ['AWS Lambda', 'Kubernetes (EKS)', 'Docker', 'Playwright', 'Vitest', 'Jest', 'Claude Code', 'Cursor'] },
+        { name: 'Frontend', items: ['React (16–19)', 'TypeScript', 'JavaScript', 'Next.js', 'Redux', 'React Query', 'Tailwind', 'Storybook', 'Three.js'] },
+        { name: 'Backend', items: ['Node.js', 'NestJS', 'Java', 'Spring Boot', 'Python', 'Laravel', 'MongoDB', 'Redis', 'ActiveMQ', 'Socket.IO'] },
+        { name: 'Mobile, cloud & testing', items: ['Flutter', 'Dart', 'AWS Lambda', 'Kubernetes (EKS)', 'Docker', 'Playwright', 'Jest', 'Claude Code'] },
       ],
     },
     education: {
@@ -251,30 +249,29 @@ export const content: Record<Lang, Content> = {
     skip: 'Skip to content',
   },
   es: {
-    meta: { title: 'Fernando Morales Ralda — Ingeniero Frontend Senior' },
+    meta: { title: 'Fernando Morales Ralda — Desarrollador de Software' },
     nav: { about: 'Sobre mí', experience: 'Experiencia', projects: 'Proyectos', skills: 'Habilidades', contact: 'Contacto' },
     hero: {
-      available: 'Disponible para nuevos roles',
-      localTime: 'en Guatemala',
-      role: 'Ingeniero Frontend Senior',
+      location: 'Ciudad de Guatemala',
+      role: 'Desarrollador de Software',
       tagline:
-        'Siete años entregando interfaces SaaS con React, TypeScript y Flutter, y últimamente también los servicios en NestJS y Java que las sostienen.',
+        'Siete años construyendo productos SaaS de punta a punta: interfaces web y móviles con React y Flutter, y los servicios que las sostienen con Node.js, NestJS y Java sobre AWS.',
       ctaContact: 'Hablemos',
       ctaProjects: 'Ver proyectos',
       paletteHint: 'o presiona',
     },
-    card: { front: 'Perfil frontend', back: 'Stack diario', flip: 'Arrastra para girar · clic para voltear', stackTitle: 'Stack', stack: frontendStack },
+    card: { front: 'Perfil', back: 'Stack diario', flip: 'Arrastra para girar · clic para voltear', stackTitle: 'Stack', stack: profileStack },
     stats: [
       { value: 7, suffix: '+', label: 'años construyendo productos SaaS' },
       { value: 1400, suffix: '+', label: 'commits como principal contribuidor del producto' },
-      { value: 180, suffix: '+', label: 'componentes en el sistema de diseño que mantengo' },
+      { value: 5, suffix: '+', label: 'negocios usan ERPs que construí' },
       { value: 15, suffix: '+', label: 'servicios en una plataforma de cobro que diseñé' },
     ],
     about: {
       title: 'Sobre mí',
       paragraphs: [
-        'El frontend es donde he pasado la mayor parte de mi carrera. En Ubiquo Labs fui el principal contribuidor de una plataforma de mensajería omnicanal: una bandeja en tiempo real con Socket.IO, renderizado de mensajes de WhatsApp, Instagram, Messenger, TikTok y RCS, y una librería compartida de componentes con temas white-label para operadoras de telecomunicaciones.',
-        'En el último año me moví hacia un rol fullstack, llevando funcionalidades de punta a punta, desde la UI en React hasta servicios en NestJS y Java. También fui CTO Interino en Novago, liderando a 3 personas en una plataforma de reportes financieros para un negocio de iGaming.',
+        'Construyo software en todo el stack. En Ubiquo Labs pasé siete años en una plataforma de mensajería omnicanal: la app en React y su librería de componentes, una app móvil en Flutter y una plataforma de cobro para WhatsApp Business que abarca más de 15 servicios en Java, NestJS y AWS Lambda.',
+        'También fui CTO Interino en Novago, liderando a 3 personas en una plataforma de reportes financieros, y como freelance construyo y mantengo sistemas ERP para hoteles y restaurantes.',
       ],
     },
     experience: {
@@ -349,9 +346,9 @@ export const content: Record<Lang, Content> = {
     skills: {
       title: 'Habilidades',
       groups: [
-        { name: 'Frontend', items: ['React (16–19)', 'TypeScript', 'JavaScript', 'Next.js', 'Redux', 'React Query', 'Tailwind', 'Storybook', 'Sistemas de Diseño', 'Three.js', 'Motion'] },
-        { name: 'Móvil y Backend', items: ['Flutter', 'Dart', 'BLoC', 'Node.js', 'NestJS', 'Java', 'Spring Boot', 'Laravel', 'MongoDB', 'Redis', 'Socket.IO'] },
-        { name: 'Cloud, pruebas e IA', items: ['AWS Lambda', 'Kubernetes (EKS)', 'Docker', 'Playwright', 'Vitest', 'Jest', 'Claude Code', 'Cursor'] },
+        { name: 'Frontend', items: ['React (16–19)', 'TypeScript', 'JavaScript', 'Next.js', 'Redux', 'React Query', 'Tailwind', 'Storybook', 'Three.js'] },
+        { name: 'Backend', items: ['Node.js', 'NestJS', 'Java', 'Spring Boot', 'Python', 'Laravel', 'MongoDB', 'Redis', 'ActiveMQ', 'Socket.IO'] },
+        { name: 'Móvil, cloud y pruebas', items: ['Flutter', 'Dart', 'AWS Lambda', 'Kubernetes (EKS)', 'Docker', 'Playwright', 'Jest', 'Claude Code'] },
       ],
     },
     education: {

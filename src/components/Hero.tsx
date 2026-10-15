@@ -1,7 +1,7 @@
 import { lazy, Suspense, useState } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
-import { TIME_ZONE, type Content, type Lang } from '../content'
-import { canUseWebGL, useLocalTime } from '../hooks'
+import type { Content } from '../content'
+import { canUseWebGL } from '../hooks'
 import { ChevronLink } from './ui'
 
 // three.js only downloads when the 3D card is actually shown.
@@ -21,8 +21,7 @@ function StaticCard({ t }: { t: Content }) {
   )
 }
 
-export function Hero({ t, lang, dark }: { t: Content; lang: Lang; dark: boolean }) {
-  const time = useLocalTime(TIME_ZONE, lang)
+export function Hero({ t, dark }: { t: Content; dark: boolean }) {
   const reduced = useReducedMotion()
   const [webgl] = useState(canUseWebGL)
   const show3D = webgl && !reduced
@@ -33,10 +32,9 @@ export function Hero({ t, lang, dark }: { t: Content; lang: Lang; dark: boolean 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, ease }}
-        className="flex items-center gap-2 text-sm text-ink-2"
+        className="text-sm text-ink-2"
       >
-        <span className="h-2 w-2 rounded-full bg-[#30d158]" aria-hidden="true" />
-        {t.hero.available} · {time} {t.hero.localTime}
+        {t.hero.location}
       </motion.p>
 
       <motion.h1
